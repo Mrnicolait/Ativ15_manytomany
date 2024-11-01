@@ -1,5 +1,6 @@
 package com.example.relacionamento_manytomany.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +20,8 @@ public class Curso {
     private String nome;
     private String descricao;
 
-    @ManyToMany(mappedBy = "cursos", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "cursos", fetch = FetchType.EAGER)
+    @JsonBackReference
     private Set<Aluno> alunos = new HashSet<>();
 
     // Construtor com parâmetros para facilitar a criação de novos cursos
